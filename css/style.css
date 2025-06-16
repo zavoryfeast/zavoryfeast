@@ -718,11 +718,50 @@ html {
         display: none;
     }
     
+    /* Fixed mobile hero image - menghapus pengaturan yang membuat gambar tidak terlihat */
+    .hero {
+        min-height: 100vh;
+    }
+    
     .hero-image {
-        position: relative;
+        position: absolute;
+        left: 0;
+        top: 0;
         width: 100%;
-        height: 300px;
-        opacity: 0.2;
+        height: 100%;
+        z-index: -1;
+    }
+    
+    .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.5); /* Sedikit lebih terang dari desktop untuk mobile */
+    }
+    
+    /* Overlay tetap ada untuk kontras teks */
+    .hero-image::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3); /* Overlay sedikit lebih ringan untuk mobile */
+        z-index: 1;
+    }
+    
+    /* Memastikan konten hero tetap di atas */
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 2rem 0;
+    }
+    
+    .hero-text {
+        padding: 2rem 0;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Menambah shadow untuk kontras teks */
     }
 }
 
@@ -741,5 +780,20 @@ html {
     
     .container {
         padding: 0 15px;
+    }
+    
+    /* Optimasi tambahan untuk layar sangat kecil */
+    .hero-text {
+        padding: 1.5rem 0;
+    }
+    
+    .hero-buttons {
+        gap: 0.5rem;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
     }
 }
